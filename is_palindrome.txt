@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool isPalindrome(long int x) {
+       long int m=x,rev=0,rem;
+        while(m){
+            rem=m%10;
+            rev=rev*10+rem;
+            m=m/10;
+        }
+        if(x<0)
+            return false;
+        if(x == rev)
+            return true;
+        return false;
+    }
+};
