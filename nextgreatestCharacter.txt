@@ -1,0 +1,26 @@
+
+class Solution {
+public:
+    char nextGreatestLetter(vector<char>& v, char target) {
+       int low=0,high=v.size()-1,mid;
+        char candidate,val='z'+1;
+        while(low<=high){
+            mid=(low+high)/2;
+            if(v[mid]<target)
+                low=mid+1;
+            else if(v[mid]>target){
+                high=mid-1;
+                candidate=v[mid];
+                val=min(candidate,val); //to get minimum of current canditate and previous.
+            }
+            else
+                low=mid+1;
+        }
+        if(val=='z'+1){
+           val=*min_element(v.begin(),v.end());
+        }
+            
+        return val;
+    }
+
+};
