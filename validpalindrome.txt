@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        for(int i=0;i<s.length();i++){
+        if(isupper(s[i])){
+            s[i]=tolower(s[i]);
+        }
+        }
+        for(int i=0;i<s.length();i++){
+            if(islower(s[i]) || isdigit(s[i])){
+            }
+            else{
+                s.erase(i,1);
+                i--;
+            }
+        }
+        string temp=s;
+        reverse(s.begin(),s.end());
+        if(s==temp)
+            return true;
+        return false;
+    }    
+};
