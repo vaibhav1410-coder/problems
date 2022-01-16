@@ -1,0 +1,12 @@
+bool findPair(int arr[], int size, int n){
+    //code for find pair given difference in array.
+    double r;
+    for(int i=0;i<size;i++){
+        for(int j=i+1;j<size;j++){
+          r=abs(arr[i]-arr[j]);
+            if(n==r)
+            return true;
+        }
+    }
+    return false;
+}
