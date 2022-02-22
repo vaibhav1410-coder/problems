@@ -1,0 +1,18 @@
+
+class Solution {
+  public:
+    void prank(long long a[], long long n){
+      for(int i=0;i<n;i++)
+      {
+        //joint number in every location and mod n to get current value of swap value if that swap value is already modified to 
+//joint number then we are using mod n.
+          a[i]=a[i]+(a[a[i]]%n)*n;
+          }
+      for(int i=0;i<n;i++)
+      {
+          //get swap value from all these modified joint numbers in all locations of array. 
+        a[i]=a[i]/n;
+      }
+      
+    }
+};
