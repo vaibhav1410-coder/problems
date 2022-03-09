@@ -1,0 +1,80 @@
+    //Function to modify the matrix such that if a matrix cell matrix[i][j]
+//is 1 then all the cells in its ith row and jth column will become 1.
+void booleanMatrix(int R, int C, int matrix[][C])
+{
+    int r[R],c[C];
+    for(int i=0;i<R;i++)
+    {
+        r[i]=0;
+    }
+    for(int j=0;j<C;j++)
+    {
+        c[j]=0;
+    }
+  for(int i=0;i<R;i++)
+  {
+      for(int j=0;j<C;j++)
+      {
+        if(matrix[i][j]==1)
+        {
+            r[i]=1;//row from this index i should be 1 or row i should be 1s.
+            c[j]=1;//column from this index j or column j should be 1.
+        }
+      }
+  }
+  
+  for(int i=0;i<R;i++)
+  {
+      //matrix cells become 1 for required row.
+          if(r[i]==1)
+          {
+              for(int j=0;j<C;j++)
+              {
+                matrix[i][j]=1;  
+              }
+          }
+  }
+  for(int j=0;j<C;j++)
+  {
+      //matrix cells become 1 for required column.
+      if(c[j]==1)
+      {
+          for(int i=0;i<R;i++)
+          {
+              matrix[i][j]=1;
+          }
+      }
+  }
+}
+
+// { Driver Code Starts.
+
+int main()
+{
+    int tc;
+	scanf("%d", &tc);
+	while(tc--){
+		int row, col;
+		scanf("%d", &row);
+		scanf("%d", &col);
+		int matrix[row][col];
+	 
+		for(int i = 0; i < row; i++){
+			for(int j = 0; j < col; j++){
+				scanf("%d", &matrix[i][j]);
+			}
+		}
+		
+		booleanMatrix(row, col, matrix);
+		
+		for(int i = 0; i < row; i++) {
+		    for(int j = 0; j < col; j++)
+		        printf("%d ", matrix[i][j]);
+		  
+		    printf("\n");
+		}
+	}
+	return 0;
+}  // } Driver Code Ends
+space-O r+c
+time- O r*c
