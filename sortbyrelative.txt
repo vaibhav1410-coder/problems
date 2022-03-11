@@ -1,0 +1,107 @@
+
+class Solution{
+    public:
+    // A1[] : the input array-1
+    // N : size of the array A1[]
+    // A2[] : the input array-2
+    // M : size of the array A2[]
+    
+    //Function to sort an array according to the other array.
+    vector<int> sortA1ByA2(vector<int> A1, int N, vector<int> A2, int M) 
+    {
+        //Your code here
+        /*vector<int> temp(N);
+        vector<int> visited(N);
+        for(int i=0;i<N;i++)
+        {
+            visited[i]=0;
+        }
+        for(int i=0;i<N;i++)
+        {
+            temp[i]=A1[i];
+        }
+        sort(temp.begin(),temp.end());
+        int k=0;
+        for(int i=0;i<M;i++)
+        {
+            int x=A2[i];
+            int mid,low=0;
+            int high=N-1,f;
+            while(low<=high)
+            {
+                mid=(2*low+(high-low))/2;
+                //if x found at temp array at left half and also that x is extreme left in left half
+                if(x==temp[mid] && (mid==0||temp[mid-1]<x))
+                {
+                    //first occurence current element of A2 is found in temp
+                    f=mid;
+                   break;
+                }
+                //if elment x is at right half
+                  else if(x>temp[mid])
+                {
+                    low=mid+1;
+                }
+                //if element x is at left half not right half or
+                //x founded but x is not extreme left so for finding that extreme left high=mid-1
+                else
+                {
+                    high=mid-1;
+                }
+
+            }
+            for(int j=f;(j<N && temp[j]==x);j++)
+            {
+                A1[k]=temp[j];
+                k++;
+                visited[j]=1;
+            }
+            
+        }
+        for(int i=0;i<N;i++)
+        {
+            if(visited[i]==0)
+            {
+                A1[k]=temp[i];
+                k++;
+            }
+        }
+        return A1;*/
+        vector <int> ans(N);
+        map <int,int> mp;
+        //key:a1[i] value:frequency of same element
+        for(int i=0;i<N;i++)
+        {
+            mp[A1[i]]=mp[A1[i]]+1;
+        }
+        int ind=0;
+        for(int i=0;i<M;i++)
+        {
+            int x=A2[i];
+            if(mp[x]!=0)//if frequency of elemtnt not zero
+            {
+                for(int j=1;j<=mp[x];j++)
+                {
+                    ans[ind++]=x;
+                }
+            }
+            //erasing key to avoid duplicate in a2
+            mp.erase(A2[i]);
+        }
+        //now remaining elemtns
+        for(auto it:mp)
+        {
+            if(it.second!=0)
+            {
+                for(int j=1;j<=it.second;j++)
+                {
+                    ans[ind++]=it.first;
+                }
+            }
+        }
+        return ans;
+    } 
+};
+
+time-O nlogn
+space On
