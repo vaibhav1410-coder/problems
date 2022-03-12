@@ -1,0 +1,57 @@
+class Solution
+{
+  public:
+    //Function to check if a string is Pangram or not.
+    bool checkPangram (string &str) {
+        // your code here
+        vector<int> v(26,0);
+        vector<char> v2(26);
+        for(int i=0;i<v2.size();i++)
+        {
+          v2[i]='A'+i;  
+        }
+        for(int i=0;i<str.size();i++)
+        {
+         if((str[i]>=65 && str[i]<=90) || (str[i]>=97 && str[i]<=122))
+         {
+           for(int j=0;j<v2.size();j++)
+           {
+              if(v2[j]==toupper(str[i]))
+              {
+                  v[j]=1;
+              }
+           }
+         }
+        }
+        for(int i=0;i<v.size();i++)
+        {
+          if(v[i]==0)
+          return false;
+        }
+        return true;
+    }
+
+};
+
+// { Driver Code Starts.
+
+// Driver Program to test above functions
+int main()
+{
+    int t;
+    cin>>t;
+    cin.ignore(INT_MAX, '\n');
+    while(t--){
+        string str;
+        getline(cin, str);
+        Solution obj;
+        if (obj.checkPangram(str) == true)
+            cout<<1<<endl;
+        else
+            cout<<0<<endl;
+    }
+    return(0);
+}
+  // } Driver Code Ends
+time- On n-string length()
+space O(no of alpahabets)=O(1)
