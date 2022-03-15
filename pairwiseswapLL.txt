@@ -1,0 +1,89 @@
+class Solution
+{
+    public:
+    Node* pairWiseSwap(struct Node* head) 
+    {
+        // The task is to complete this method
+       struct Node *prev,*a,*b,*c;
+       //updaete prev and a.
+       prev=NULL;
+       a=head;
+       //pointer=address
+       while((a && a->next)!=NULL)
+       {
+           b=a->next; //a-nextpointr(pointer pointing to a's neighbour node) linked to b pointer(pointer to structure node)
+           c=b->next;//same c pointer pointing to third node(as c having address of third node ) 
+           if(a==head)
+           {
+               head=b;//new head is ponting to b
+           }
+           else
+           {
+               prev->next=b;//b linkedd to a's anscestor 
+           }
+           b->next=a;
+           a->next=c;//c node must come after a
+           //update a and prev
+           prev=a;
+           a=c;
+       }
+       return head;
+    }
+};
+
+// { Driver Code Starts.
+
+void printList(Node* node) 
+{ 
+	while (node != NULL) { 
+		cout << node->data <<" "; 
+		node = node->next; 
+	}  
+	cout<<"\n";
+}
+
+int main() 
+{ 
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+
+		int data;
+		cin>>data;
+		struct Node *head = new Node(data);
+		struct Node *tail = head;
+		map<Node*, int> mp;
+		mp[head] = head->data;
+		for (int i = 0; i<n-1; ++i)
+		{
+			cin>>data;
+			tail->next = new Node(data);
+			tail = tail->next;
+			mp[tail] = tail->data;
+		}
+		struct Node *failure = new Node(-1);
+		Solution ob;
+		head = ob.pairWiseSwap(head);
+		int flag = 0;
+		struct Node *temp = head;
+		while(temp){
+		    if(mp[temp] != temp->data){
+		        flag = 1;
+		        break;
+		    }
+		    temp = temp->next;
+		}
+		if(flag)
+		    printList(failure);
+		else
+		    printList(head);
+	}
+	return 0; 
+}
+  // } Driver Code Ends
+
+time- On
+space-O1
